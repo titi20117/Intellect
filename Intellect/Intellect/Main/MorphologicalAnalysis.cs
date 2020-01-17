@@ -108,14 +108,16 @@ namespace Intellect.Main
             string newMorphoSentence = regularExpresion.ReplaceSentence(morphoSentence, "-", " ").Trim();
             string[] collectionMorphoSentence = newMorphoSentence.Split(" ");
 
-            foreach (string item in collectionMorphoSentence)
+            foreach (string code in collectionMorphoSentence)
             {
-                if (!(item.Equals("0.0")))
+                if (!(code.Equals("0.0")))
                 {
-                    int i = Int32.Parse(regularExpresion.GetBasisFromWord(item, @"\d{1,}\."));
-                    int j = Int32.Parse(regularExpresion.GetBasisFromWord(item, @"\.\d{1,}"));
-                    Console.WriteLine("item non i = {0}", i);
-                    Console.WriteLine("item non j = {0}", j);
+                    int i = Int32.Parse(regularExpresion.GetBasisFromWord(code, @"\d{1,}\."));
+                    int j = Int32.Parse(regularExpresion.GetBasisFromWord(code, @"\.\d{1,}"));
+                    string basisMorphoInfo = regularExpresion.ReplaceSentence(data.WordBasis[j], "\\-.{1,}", "");
+                    string endMorphoInfo = regularExpresion.ReplaceSentence(data.Ends[i], "\\-.{1,}", "");
+                    Console.WriteLine("Код слова = {0}({1}\"+\"{2})", code, basisMorphoInfo, endMorphoInfo);
+                    //Console.WriteLine("Морфологическая информация: " + data.GrammatiInfo[i]);
                 }
             }
         }
