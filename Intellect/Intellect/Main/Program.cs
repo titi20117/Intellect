@@ -15,7 +15,7 @@ namespace Intellect.Main
             Console.WriteLine(scanner.ToString());
 
             MorphologicalAnalysis morphologicalAnalysis = new MorphologicalAnalysis();
-            morphologicalAnalysis.SearchEnds(input);
+            morphologicalAnalysis.SearchMorphologicalCodeSentence(input);
             morphologicalAnalysis.SearchMorphologicalInformation();
         }
     }
