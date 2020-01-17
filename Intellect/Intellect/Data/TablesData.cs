@@ -9,7 +9,7 @@ namespace Intellect.Data
 		public List<string> Ends { get { return CreateList(myEnds); } }
 		public List<string> WordBasis { get { return CreateList(basis); } }
 		public string[,] TabMophoInfo { get { return CreateTabMorpInfo(CreateList(basis), CreateList(myEnds)); } }
-		public List<string> GrammatiInfo { get { return CreateList(gramInfo); } }
+		public List<string> GrammarInfo { get { return CreateList(gramInfo); } }
 
 
 		private string[] myEnds =
@@ -71,7 +71,7 @@ namespace Intellect.Data
 		private List<string> CreateList(string[,] gramInfo)
 		{
 			List<string> result = new List<string>();
-			for (int i = 0; i < gramInfo.Length; i++)
+			for (int i = 0; i < gramInfo.Length / 2; i++)
 			{
 				result.Add(gramInfo[i,1]);
 			}

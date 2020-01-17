@@ -24,7 +24,7 @@ namespace Intellect.Main
         }
 
         /// <summary>
-        /// нахождение возможные оканчания
+        /// нахождение возможные окончания
         /// </summary>
         /// <param name="sentence"></param>
         public void SearchMorphologicalCodeSentence(string sentence)
@@ -112,13 +112,79 @@ namespace Intellect.Main
             {
                 if (!(code.Equals("0.0")))
                 {
-                    int i = Int32.Parse(regularExpresion.GetBasisFromWord(code, @"\d{1,}\."));
-                    int j = Int32.Parse(regularExpresion.GetBasisFromWord(code, @"\.\d{1,}"));
-                    string basisMorphoInfo = regularExpresion.ReplaceSentence(data.WordBasis[j], "\\-.{1,}", "");
-                    string endMorphoInfo = regularExpresion.ReplaceSentence(data.Ends[i], "\\-.{1,}", "");
+                    int i = Int32.Parse(regularExpresion.GetBasisFromWord(code, @"\.\d{1,}"));
+                    int j = Int32.Parse(regularExpresion.GetBasisFromWord(code, @"\d{1,}\."));
+                    string basisMorphoInfo = regularExpresion.ReplaceSentence(data.WordBasis[i], "\\-.{1,}", "");
+                    string endMorphoInfo = regularExpresion.ReplaceSentence(data.Ends[j], "\\-.{1,}", "");
                     Console.WriteLine("Код слова = {0}({1}\"+\"{2})", code, basisMorphoInfo, endMorphoInfo);
-                    //Console.WriteLine("Морфологическая информация: " + data.GrammatiInfo[i]);
+                    Console.WriteLine("Морфологическая информация: " + data.TabMophoInfo[i,j]);
+
+                    if(!(data.TabMophoInfo[i,j].Equals("")))
+                    {
+                        FindGrammarInformation(Int32.Parse(data.TabMophoInfo[i, j]), i, j);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Грамматическая информация: не добавлена");
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("Код слово = " + code);
+                    Console.WriteLine("Слово не определено");
+                    morphoSentenceSpeech = morphoSentenceSpeech + "9";
+                }
+            }
+        }
+        /// <summary>
+        /// искать грамматическую информацию
+        /// </summary>
+        /// <param name="num = number grammar info"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        private void FindGrammarInformation(int num, int i, int j)
+        {
+            string info = data.GrammarInfo[num - 1];
+            string gramInfo = regularExpresion.ReplaceSentence(info, ".{1,}\\-", "");
+            if(i >= 0 && i <= 6)
+            {
+                Console.WriteLine("Существительное мужкого рода: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "1";
+            }
+            if (i >= 7 && i <= 11)
+            {
+                Console.WriteLine("Существительное женского рода: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "2";
+            }
+            if (i == 12)
+            {
+                Console.WriteLine("Существительное среднего рода: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "3";
+            }
+            if (i == 13)
+            {
+                Console.WriteLine("Существительное мно.: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "4";
+            }
+            if (i > 13 && i < 23)
+            {
+                Console.WriteLine("Прилагательные: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "5";
+            }
+            if (i > 22 && i < 28)
+            {
+                Console.WriteLine("Глаголы в личной форме: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "6";
+            }
+            if (i > 27 && i < 30)
+            {
+                Console.WriteLine("Местоимения: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "7";
+            }
+            if (i > 29 && i <= 34)
+            {
+                Console.WriteLine(gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "8";
             }
         }
     }
