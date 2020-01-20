@@ -132,7 +132,7 @@ namespace Intellect.Main
                 {
                     Console.WriteLine("Код слово = " + code);
                     Console.WriteLine("Слово не определено");
-                    morphoSentenceSpeech = morphoSentenceSpeech + "9";
+                    morphoSentenceSpeech = morphoSentenceSpeech + "5";
                 }
             }
         }
@@ -154,37 +154,37 @@ namespace Intellect.Main
             if (i >= 7 && i <= 11)
             {
                 Console.WriteLine("Существительное женского рода: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "2";
+                morphoSentenceSpeech = morphoSentenceSpeech + "1";
             }
             if (i == 12)
             {
                 Console.WriteLine("Существительное среднего рода: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "3";
+                morphoSentenceSpeech = morphoSentenceSpeech + "1";
             }
             if (i == 13)
             {
                 Console.WriteLine("Существительное мно.: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "4";
+                morphoSentenceSpeech = morphoSentenceSpeech + "1";
             }
             if (i > 13 && i < 23)
             {
                 Console.WriteLine("Прилагательные: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "5";
+                morphoSentenceSpeech = morphoSentenceSpeech + "2";
             }
             if (i > 22 && i < 28)
             {
                 Console.WriteLine("Глаголы в личной форме: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "6";
+                morphoSentenceSpeech = morphoSentenceSpeech + "3";
             }
             if (i > 27 && i < 30)
             {
                 Console.WriteLine("Местоимения: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "7";
+                morphoSentenceSpeech = morphoSentenceSpeech + "4";
             }
             if (i > 29 && i <= 34)
             {
                 Console.WriteLine(gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "8";
+                morphoSentenceSpeech = morphoSentenceSpeech + "4";
             }
         }
     }
