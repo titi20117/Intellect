@@ -9,6 +9,7 @@ namespace Intellect.Main
         static void Main(string[] args)
         {
             RegularExpresion regularExpresion = new RegularExpresion();
+            //Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Что хотите знать на тему : Лучший игрок финалов НБА <<Баскетбол>>");
             
             string input = Console.ReadLine();
