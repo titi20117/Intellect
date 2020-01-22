@@ -10,8 +10,11 @@ namespace Intellect.Data
 		public List<string> WordBasis { get { return CreateList(basis); } }
 		public string[,] TabMophoInfo { get { return CreateTabMorpInfo(CreateList(basis), CreateList(myEnds)); } }
 		public List<string> GrammarInfo { get { return CreateList(gramInfo); } }
+		public string[] ComponentRdSentence { get { return componentRdSentence; } }
+		public string[] StructureGroupVerb { get { return structureGroupVerb; } }
+		public string[] PotentielStructureGroupNoun { get { return potentielStructureGroupNoun; } }
 
-
+		//таблица окончания
 		private string[] myEnds =
 		{
 			"ами", "ат", "мя", "ям", "его", "ах", "ов", "ят", "емп", "ая", "ев", "ях",
@@ -22,18 +25,19 @@ namespace Intellect.Data
 			"ам", "ми", "юю",  "ется", "ов", "+"
 		};
 
+		//таблица основ слов
 		private string[] basis =
 		{
-			"билет-+,ы,а,ов-1", "ден-ь,и-1", "час-ов-1","зоопарк-а,+-1", "режим-+-1", "ребенок-+,а-1","пенсионер-+,а,ов-1",
-			"цен-а-1", "стоимост-+,ь-1", "касс-а,ы,е-1","продаж-а,е-1", "работ-а,ы-1", "наличи-е,и-1","дет-и,ей-1",
-			"будн-ие,ий-2", "рабоч-ие,ий-2","выходн-ой,ые-2", "взросл-ый-ого,ых-2", "маленьк-ий,их,ого-2", "детск-ий,ого-2",
-			"социальн-ый,ого-2", "пенсионн-ый,ого-2", "льготн-ый,ого-2", "сто-ь,ят,ит,-3","ест-ь-3", "работа-ть,ет-3",
-			"открыва-ется,ть,ют-3", "закрыва-ется,ть,ют-3","как-+,ов,ой,ие-4","сколько-+-4", "в-+-5", "во-+-5",
-			"для-+-5", "ли-+-5", "18-+-6"
+			"финал", "момент", "матч","голос", "игрок", "европеец","журналист",
+			"команд", "звезд", "наград","лучш", "перв", "двукратн","молод",
+			"разн", "единственн","больш", "меньш", "ста", "получив",
+			"стал", "игравш", "проигравш", "смог","дв", "кто",
+			"кого", "всего","никогда","сам", "у", "из",
+			"не", "на", "и", "в"
 		};
 
 	
-
+		//таблица грамматическая информация
 		public string[,] gramInfo =
 		{
 			{ "1", "11-ед.число:именительный падеж" }, {"2", "11,14-ед.число:именительный падеж/винительный падеж" }, 
@@ -56,9 +60,16 @@ namespace Intellect.Data
 			{ "31", "25-мн.число:твор.падеж" }, {"32", "26-мн.число:пред.падеж" },
 			{"33", "третье лицо, ед.число"}, {"34", "третье лицо, мн.число"}, {"35", "первое спряжение"},
 			{"36", "второе спряжение"},{"37", "архайческий"},{"38", "Наречие"}, {"39", "прилагательное"},
-			{"40", "Наречие им./вин падеж"},{"41", "предлог"},{"42", "Число"}
+			{"40", "Наречие им./вин падеж"},{"41", "предлог"},{"42", "Ч.родитель.падеж"},{"43", "первое/второе/третье лицо, ед.число"}
+			,{"44", "Союзное слово им./п."},{"45", "Союзное слово рд./вн./п."},
 
 		};
+
+		//таблица сокрашения составных частей предложения.
+		private string[] componentRdSentence = { "ВГ", "Г", "ГГ", "ГС", "М", "ПД", "ПМ", "ПР", "С", "СЗ" };
+		private string[] structureGroupVerb = { "Г", "Г-ПД", "Г-ВГ", };
+		private string[] potentielStructureGroupNoun = { "С", "ПР-С", "ПМ-С", "С-С", "ПР-С-С", "С-С-С",
+														"С-ПР-С", "ПР-С-ПР-С", "ПР-С-С-С", "С-С-С-С", "С-С-ПР-С" };
 
 		private List<string> CreateList(string[] elsWords)
 		{
@@ -90,82 +101,70 @@ namespace Intellect.Data
 
 			//0-basis,19-ends: 14grammaInfo
 			//1- сущ. муж. рода
-			basisEndInfo[0, 43] = "26";
-			basisEndInfo[0,19] = "14";
+			basisEndInfo[0, 65] = "2";
+			basisEndInfo[0,19] = "6";
 			basisEndInfo[0, 6] = "27";
-			basisEndInfo[1, 47] = "2";
-			basisEndInfo[1, 27] = "26";
-			basisEndInfo[2, 6] = "27";
-			basisEndInfo[3, 19] = "14";
+			basisEndInfo[1, 65] = "2";
+			basisEndInfo[1, 19] = "6";
+			basisEndInfo[2, 65] = "2";
+			basisEndInfo[2, 23] = "22";
 			basisEndInfo[3, 65] = "2";
+			basisEndInfo[3, 6] = "27";
 			basisEndInfo[4, 65] = "2";
-			basisEndInfo[5, 65] = "2";
-			basisEndInfo[5, 19] = "14";
-			basisEndInfo[6, 65] = "2";
-			basisEndInfo[6, 19] = "14";
-			basisEndInfo[6, 6] = "27";
+			basisEndInfo[4, 18] = "18";
+			basisEndInfo[4, 39] = "15";
+			basisEndInfo[4, 19] = "11";
+			basisEndInfo[5, 65] = "1";
+			basisEndInfo[6, 65] = "1";
+			basisEndInfo[6, 6] = "28";
 			//2- сущ. жен. рода
+			basisEndInfo[7, 65] = "27";
+			basisEndInfo[7, 23] = "16";
+			basisEndInfo[7, 43] = "26";
+			basisEndInfo[7, 5] = "32";
 			basisEndInfo[7, 19] = "1";
-			basisEndInfo[8, 47] = "1";
+			basisEndInfo[8, 65] = "27";
+			basisEndInfo[8, 19] = "1";
+			basisEndInfo[9, 65] = "27";
 			basisEndInfo[9, 19] = "1";
-			basisEndInfo[9, 43] = "14";
-			basisEndInfo[9, 23] = "16";
-			basisEndInfo[10, 19] = "1";
-			basisEndInfo[10, 23] = "16";
-			basisEndInfo[11, 19] = "1";
-			basisEndInfo[11, 43] = "14";
-			//3- сущ. сред. рода
-			basisEndInfo[12, 23] = "2";
-			basisEndInfo[12, 27] = "22";
-			//4- сущ.мно.
-			basisEndInfo[13, 27] = "25";
-			basisEndInfo[13, 21] = "28";
-			//5- прилагательные
-			basisEndInfo[14, 41] = "25";
-			basisEndInfo[14, 45] = "2";
-			basisEndInfo[15, 41] = "25";
-			basisEndInfo[15, 45] = "1";
-			basisEndInfo[16, 14] = "2";
-			basisEndInfo[16, 42] = "26";
-			basisEndInfo[17, 46] = "2";
-			basisEndInfo[17, 40] = "6";
-			basisEndInfo[17, 54] = "29";
-			basisEndInfo[18, 45] = "2";
-			basisEndInfo[18, 57] = "29";
-			basisEndInfo[18, 40] = "6";
-			basisEndInfo[19, 45] = "2";
-			basisEndInfo[19, 40] = "6";
-			basisEndInfo[20, 46] = "2";
-			basisEndInfo[20, 40] = "6";
-			basisEndInfo[21, 46] = "2";
-			basisEndInfo[21, 40] = "6";
-			basisEndInfo[22, 46] = "2";
-			basisEndInfo[22, 40] = "6";
-			//6- Глаголы в личной форме 33
-			basisEndInfo[23, 47] = "36";
-			basisEndInfo[23, 7] = "34";
-			basisEndInfo[23, 53] = "33";
-			basisEndInfo[24, 47] = "37";
-			basisEndInfo[25, 59] = "35";
-			basisEndInfo[25, 29] = "33";
-			basisEndInfo[26, 63] = "33";
-			basisEndInfo[26, 59] = "35";
-			basisEndInfo[26, 58] = "34";
-			basisEndInfo[27, 63] = "33";
-			basisEndInfo[27, 59] = "35";
-			basisEndInfo[27, 58] = "34";
-			//7- Местоимения
+			//3- прилагательные
+			basisEndInfo[10, 4] = "11";
+			basisEndInfo[10, 49] = "18";
+			basisEndInfo[10, 45] = "2";
+			basisEndInfo[10, 12] = "15";
+			basisEndInfo[11, 50] = "18";
+			basisEndInfo[11, 46] = "2";
+			basisEndInfo[12, 46] = "2";
+			basisEndInfo[13, 14] = "2";
+			basisEndInfo[14, 54] = "29";
+			basisEndInfo[14, 42] = "26";
+			basisEndInfo[14, 46] = "2";
+			basisEndInfo[15, 46] = "2";
+			basisEndInfo[16, 23] = "38";
+			basisEndInfo[17, 23] = "38";
+			//4- Глаголы в личной форме 33
+			basisEndInfo[18, 59] = "35";
+			//5- Глаголы в прошедшем времени
+			basisEndInfo[19, 65] = "36";
+			basisEndInfo[20, 65] = "43";
+			basisEndInfo[21, 45] = "35";
+			basisEndInfo[22, 21] = "35";
+			basisEndInfo[23, 65] = "43";
+			//количественные числительные
+			basisEndInfo[24, 34] = "41";
+			//6- Местоимения
+			basisEndInfo[25, 65] = "44";
+			basisEndInfo[26, 65] = "45";
+			basisEndInfo[27, 65] = "38";
 			basisEndInfo[28, 65] = "38";
-			basisEndInfo[28, 6] = "39";
-			basisEndInfo[28, 14] = "2";
-			basisEndInfo[28, 41] = "26";
-			basisEndInfo[29, 65] = "40";
+			basisEndInfo[29, 46] = "2";
+			//7-предлоги
 			basisEndInfo[30, 65] = "41";
 			basisEndInfo[31, 65] = "41";
 			basisEndInfo[32, 65] = "41";
 			basisEndInfo[33, 65] = "41";
-			basisEndInfo[34, 65] = "42";
-
+			basisEndInfo[34, 65] = "41";
+			basisEndInfo[35, 65] = "41";
 			return basisEndInfo;
 		}
 	}

@@ -9,6 +9,8 @@ namespace Intellect.Main
     public class MorphologicalAnalysis
     {
         //take data from TableData
+
+        public string MorphoSentenceSpeech { get { return morphoSentenceSpeech; } }
         private TablesData data = new TablesData();
         private string morphoSentence = "";
         private string morphoSentenceSpeech = "";
@@ -16,7 +18,7 @@ namespace Intellect.Main
         private string[] unknownWord;
         //private int temp = 0;
         private RegularExpresion regularExpresion = new RegularExpresion();
-        private string[] ConvertStringToArray(String sentence)
+        public string[] ConvertStringToArray(String sentence)
         {
             string newSentence = sentence.ToLower();
             string[] words = newSentence.Split(" ");
@@ -132,7 +134,7 @@ namespace Intellect.Main
                 {
                     Console.WriteLine("Код слово = " + code);
                     Console.WriteLine("Слово не определено");
-                    morphoSentenceSpeech = morphoSentenceSpeech + "5";
+                    morphoSentenceSpeech = morphoSentenceSpeech + "С ";
                 }
             }
         }
@@ -149,42 +151,43 @@ namespace Intellect.Main
             if(i >= 0 && i <= 6)
             {
                 Console.WriteLine("Существительное мужкого рода: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "1";
+                morphoSentenceSpeech = morphoSentenceSpeech + "С ";
             }
-            if (i >= 7 && i <= 11)
+            if (i >= 7 && i <= 9)
             {
                 Console.WriteLine("Существительное женского рода: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "1";
+                morphoSentenceSpeech = morphoSentenceSpeech + "С ";
             }
-            if (i == 12)
-            {
-                Console.WriteLine("Существительное среднего рода: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "1";
-            }
-            if (i == 13)
-            {
-                Console.WriteLine("Существительное мно.: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "1";
-            }
-            if (i > 13 && i < 23)
+            if (i >= 10 && i <= 17)
             {
                 Console.WriteLine("Прилагательные: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "2";
+                morphoSentenceSpeech = morphoSentenceSpeech + "ПР ";
             }
-            if (i > 22 && i < 28)
+            if (i == 18)
             {
                 Console.WriteLine("Глаголы в личной форме: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "3";
+                morphoSentenceSpeech = morphoSentenceSpeech + "Г ";
             }
-            if (i > 27 && i < 30)
+
+            if (i >= 19 && i <= 23)
+            {
+                Console.WriteLine("Глаголы в прошедшем времени: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "Г ";
+            }
+            if (i == 24)
+            {
+                Console.WriteLine("Количественные числительные: " + gramInfo);
+                morphoSentenceSpeech = morphoSentenceSpeech + "Г ";
+            }
+            if (i >= 25 && i <= 29)
             {
                 Console.WriteLine("Местоимения: " + gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "4";
+                morphoSentenceSpeech = morphoSentenceSpeech + "М ";
             }
-            if (i > 29 && i <= 34)
+            if (i >= 30 && i <= 35)
             {
                 Console.WriteLine(gramInfo);
-                morphoSentenceSpeech = morphoSentenceSpeech + "4";
+                morphoSentenceSpeech = morphoSentenceSpeech + "ПД ";
             }
         }
     }

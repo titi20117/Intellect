@@ -19,7 +19,7 @@ namespace Intellect.Main
         public override string ToString()
         {
             
-            return "Предложение : " + this.sentence;
+            return "Вопрос : " + this.sentence;
         }
     }
 }
